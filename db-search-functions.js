@@ -80,11 +80,18 @@ function getObjectValue(handleValue) {
   var database = firebase.database();
   var databaseVersionReference = database.ref('/db-search/object');
   databaseVersionReference.once('value').then(function(snapshot) {
-  var object = snapshot.val();
-  handleValue(object.values(donkey));
+  var obj = snapshot.val();
+  handleValue(obj.donkey);
 });
+  
 }
 
 function getObjectKeyCount(handleKeyCount) {
   // TODO: Your code goes here.
+  var database = firebase.database();
+  var databaseVersionReference = database.ref('/db-search/object');
+  databaseVersionReference.once('value').then(function(snapshot) {
+  var obj2 = snapshot.val();
+  handleKeyCount(Object.keys(obj2).length);
+});
 }
